@@ -3,6 +3,9 @@ import {
   TypeOrmModuleAsyncOptions,
   TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
+import * as dotenv from 'dotenv';
+import { DataSource } from 'typeorm';
+dotenv.config();
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   imports: [ConfigModule],
   inject: [ConfigService],
@@ -16,16 +19,14 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
       password: process.env.DB_PASSWORD,
       entities: [__dirname + '/../**/*.entity.{js,ts}'],
       migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
-      extra: {
-        charset: 'utf8mb4_unicode_ci',
-      },
+
       synchronize: false,
       logging: true,
     };
   },
 };
 
-export const typeOrmConfig: TypeOrmModuleOptions = {
+export const typeOrmConfig: DataSource = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT, 10),
@@ -36,4 +37,4 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
   synchronize: false,
   logging: true,
-};
+});
