@@ -4,8 +4,10 @@ import {
   Column,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Options } from './option.entity';
 import { Quiz } from './quiz.entity';
 
 @Entity('questions')
@@ -30,4 +32,10 @@ export class Question extends BaseEntity {
   })
   @ManyToOne(() => Quiz, (quiz) => quiz.questions)
   quiz: Quiz;
+
+  @ApiProperty({
+    description: 'Option List',
+  })
+  @OneToMany(() => Options, (option) => option.question)
+  options: Options[];
 }
