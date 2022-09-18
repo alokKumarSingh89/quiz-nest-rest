@@ -12,11 +12,11 @@ export class UserService {
   async doUserRegistration(
     userRegister: UserRegisterRequestDTO,
   ): Promise<User> {
-    return await this.userRepository.save({
-      name: userRegister.name,
-      email: userRegister.email,
-      password: userRegister.password,
-    });
+    const user = new User();
+    user.name = userRegister.name;
+    user.email = userRegister.email;
+    user.password = userRegister.password;
+    return await this.userRepository.save(user);
   }
 
   async getUserByEmail(email: string): Promise<User | undefined> {

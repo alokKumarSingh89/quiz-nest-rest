@@ -44,7 +44,7 @@ export class User {
   updatedAt: Date;
 
   @BeforeInsert()
-  async setPassword(password: string) {
+  async updatePassword(password: string) {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(password || this.password, salt);
   }
