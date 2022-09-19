@@ -6,7 +6,7 @@ import {
   paginate,
   Pagination,
 } from 'nestjs-typeorm-paginate';
-import { events } from 'src/common/events/constant';
+import { events } from './../../../common/events/constant';
 import { Repository } from 'typeorm';
 import { CreateQuizDTO } from '../dto/create.quize.dto';
 import { Quiz } from '../entities/quiz.entity';
