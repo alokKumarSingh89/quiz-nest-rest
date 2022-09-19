@@ -30,7 +30,7 @@ export class Question extends BaseEntity {
   @ApiProperty({
     description: 'Quiz of the question',
   })
-  @ManyToOne(() => Quiz, (quiz) => quiz.questions)
+  @ManyToOne('Quiz', 'questions')
   quiz: Quiz;
 
   @ApiProperty({
